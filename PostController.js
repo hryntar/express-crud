@@ -20,7 +20,7 @@ class PostController {
       }
    }
    async getOne(req, res) {
-      try { 
+      try {
          const { id } = req.params;
          if (!id) {
             res.status(400).json({ message: "id is not specified" });
@@ -33,14 +33,18 @@ class PostController {
    }
    async update(req, res) {
       try {
-         
+         const post = req.body;
+         if (!post._id) {
+            res.status(400).json({ message: "id is not specified" });
+         }
+         const updatedPost = await Post.findByIdAndUpdate(post._id, post, { new: true });
+         return res.json(updatedPost);
       } catch (error) {
          res.status(500).json(error);
       }
    }
    async delete(req, res) {
       try {
-         
       } catch (error) {
          res.status(500).json(error);
       }
