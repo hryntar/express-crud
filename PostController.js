@@ -4,7 +4,7 @@ import PostService from "./PostService.js";
 class PostController {
    async create(req, res) {
       try {
-         const post = await PostService.create(req.body);
+         const post = await PostService.create(req.body, req.files.picture);
          res.json(post);
       } catch (error) {
          res.status(500).json(error);
@@ -40,7 +40,7 @@ class PostController {
          const updatedPost = await PostService.update(post);
          return res.json(updatedPost);
       } catch (error) {
-         res.status(500).json(error);
+         res.status(500).json(error.message);
       }
    }
    async delete(req, res) {
