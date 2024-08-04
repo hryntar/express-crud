@@ -20,8 +20,13 @@ class PostController {
       }
    }
    async getOne(req, res) {
-      try {
-         
+      try { 
+         const { id } = req.params;
+         if (!id) {
+            res.status(400).json({ message: "id is not specified" });
+         }
+         const post = await Post.findById(id);
+         return res.json(post);
       } catch (error) {
          res.status(500).json(error);
       }
