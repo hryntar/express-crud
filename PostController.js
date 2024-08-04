@@ -12,16 +12,33 @@ class PostController {
    }
 
    async getAll(req, res) {
-      
+      try {
+         const posts = await Post.find();
+         return res.json(posts);
+      } catch (error) {
+         res.status(500).json(error);
+      }
    }
    async getOne(req, res) {
-
+      try {
+         
+      } catch (error) {
+         res.status(500).json(error);
+      }
    }
    async update(req, res) {
-
+      try {
+         
+      } catch (error) {
+         res.status(500).json(error);
+      }
    }
    async delete(req, res) {
-
+      try {
+         
+      } catch (error) {
+         res.status(500).json(error);
+      }
    }
 }
 
